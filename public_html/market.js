@@ -37,40 +37,38 @@ document.addEventListener("DOMContentLoaded", function() {
     fetch("/getListings").then(function(response) {
         if (response.status === 200) {
             messageBlock.textContent = "";
-            updateTable(response.json());
+            return response.json();
         }
         else {
             messageBlock.textContent = "Error loading marketplace data"
+        }
+    }).then(function (data) {
+        if(!data.rows.length)
+            return
+        else {
+            for (let i = 0; i < data.rows.length; i++) {
+                let row = document.createElement("tr");
+                let item = document.createElement("td");
+                let price = document.createElement("td");
+                let quant = document.createElement("td");
+                let seller = document.createElement("td");
+                
+                item.textContent = data.rows[i].item;
+                quant.textContent = data.rows[i].quantity;
+                price.textContent = data.rows[i].price;
+                seller.textContent = data.rows[i].name;
+
+                row.append(item);
+                row.append(quant);
+                row.append(price);
+                row.append(seller);
+                table.append(row);
+            }
         }
     }).catch(function (error) {
         console.log(error);
     })
 });
-
-
-
-function updateTable(data) {
-    clearTable()
-    console.log(data);
-    for (let i = 0; i < data.item.length; i++) {
-        let row = document.createElement("tr");
-        let item = document.createElement("td");
-        let price = document.createElement("td");
-        let quant = document.createElement("td");
-        let seller = document.createElement("td");
-
-        item.textContent = data.item[i];
-        quant.textContent = data.quantity[i];
-        price.textContent = data.price[i];
-        seller.textContent = data.name[i];
-
-        row.append(item);
-        row.append(quant);
-        row.append(price);
-        row.append(seller);
-        table.append(row);
-    }
-}
 
 function clearTable() {
     while (table.children.length > 1) {
