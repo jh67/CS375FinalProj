@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Marketplace</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+<!-- This file will hold the Marketplace; the initial screen upon startup should be what is currently on the market
+	 At the bottom of the page/side of the page (TBD as of 02/25/2022) will have input with a button to populate
+	 a new listing. [Item Name, Quantity, Cost per Item, Seller's Name] 
+	 The information will be stored in the server's database and construct the table from the server (TBD 2/25/2022)-->
+
+<h1>Marketplace</h1>
+
+<p>Welcome to the Marketplace!</p>
+
+<div id="table"></div>
+<div class="form">
+	<div>
+		<label for="Item Name">Item Name:</label>
+		<input id="item" type="text">
+	</div>
+	<div>
+		<label for="Quantity">Quantity:</label>
+		<input id="quantity" type="number">
+	</div>
+	<div>
+		<label for="Price">Price:</label>
+		<input id="price" type="text">
+	</div>
+	<div>
+		<label for="Seller Name">Seller Name:</label>
+		<input id="name" type="text">
+	</div>
+	<button id="submit">Add Listing</button>
+
+	<div id="message"></div>
+</div>
+<script src="market.js"></script>
+
+</body>
+</html>
