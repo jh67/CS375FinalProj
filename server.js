@@ -136,6 +136,17 @@ app.post("/newListing", function(req, res){
         return res.sendStatus(500);
     })
 });
+
+app.get("/getListings", function(req, res){
+    pool.query("SELECT * FROM market")
+    .then(function(response){
+        return res.status(200).json({rows: response.rows});
+    })
+    .catch(function(error){
+        console.log(error.message);
+        return res.sendStatus(500);
+    })
+});
 /*
 app.post("/vulnerable", function (req, res) {
     let userValue = req.body.userValue;

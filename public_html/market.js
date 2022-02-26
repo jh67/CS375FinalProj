@@ -35,7 +35,7 @@ submitButton.addEventListener("click", function(){
 
 document.addEventListener("DOMContentLoaded", function() {
     fetch("/getListings").then(function(response) {
-        if (response.stats === 200) {
+        if (response.status === 200) {
             messageBlock.textContent = "";
             updateTable(response.json());
         }
@@ -51,6 +51,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 function updateTable(data) {
     clearTable()
+    console.log(data);
     for (let i = 0; i < data.item.length; i++) {
         let row = document.createElement("tr");
         let item = document.createElement("td");
@@ -60,8 +61,8 @@ function updateTable(data) {
 
         item.textContent = data.item[i];
         quant.textContent = data.quantity[i];
-        price.textContent = data.pricec[i];
-        seller.textContent = data.seller[i];
+        price.textContent = data.price[i];
+        seller.textContent = data.name[i];
 
         row.append(item);
         row.append(quant);
@@ -74,8 +75,5 @@ function updateTable(data) {
 function clearTable() {
     while (table.children.length > 1) {
         table.children[1].remove();
-    }
-    if(errorPlace.children[0]) {
-        errorPlace.children[0].remove();
     }
 }
