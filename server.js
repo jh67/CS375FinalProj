@@ -109,6 +109,33 @@ app.post("/auth", function (req, res) {
         });
 });
 
+// Adding new listing to market
+app.post("/newListing", function(req, res){
+    let body = req.body;
+    if(
+        !body.hasOwnProperty("item") ||
+        !body.hasOwnProperty("quantity") ||
+        !body.hasOwnProperty("price") ||
+        !body.hasOwnProperty("name") ||
+        !(body.item.length >= 1) ||
+        !(body.quantity > 0) ||
+        !(body.name.length >= 1) ||
+        !(body.price.length >= 1))
+        {
+            return res.sendStatus(400);
+        }
+    
+    pool.query("INSERT INTO market(item, quantity, price, name) VALUES($1, $2, $3, $4) RETURNING *",
+    [body.item, body.quantity, body.price, body.name])
+    .then(function(response){
+        console.log("Added New Listing");
+        return res.sendStatus(200);
+    })
+    .catch(function(error){
+        console.log(error.message);
+        return res.sendStatus(500);
+    })
+});
 /*
 app.post("/vulnerable", function (req, res) {
     let userValue = req.body.userValue;
