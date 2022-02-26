@@ -24,6 +24,7 @@ submitButton.addEventListener("click", function(){
     }).then(function(response) {
         if(response.status === 200){
             messageBlock.textContent = "";
+            updateTable();
         }
         else {
             messageBlock.textContent = "Invalid Request; Please fill in appropriate fields";
@@ -33,7 +34,10 @@ submitButton.addEventListener("click", function(){
     })
 });
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", updateTable);
+
+function updateTable() {
+    clearTable()
     fetch("/getListings").then(function(response) {
         if (response.status === 200) {
             messageBlock.textContent = "";
@@ -69,6 +73,8 @@ document.addEventListener("DOMContentLoaded", function() {
         console.log(error);
     })
 });
+
+}
 
 function clearTable() {
     while (table.children.length > 1) {
