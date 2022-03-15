@@ -11,6 +11,12 @@ th, td {
 	padding: 10px;
 }
 
+.ribbon {
+	border-radius: 10px;
+	width: 200px;
+	height: 100px;
+}
+
 .form {
 	padding: 1rem;
 	margin: 2rem 0;
