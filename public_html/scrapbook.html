@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Scrapbook</title>
+	<style>
+        .pic {
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+    <center>
+        <h1>Clan Gallery</h1>
+        <div class="slideshow">
+            <button class="last" id="last">&lt;</button>
+            <button class="next" id="next">&gt;</button>
+            <div class="pic">
+                <img src="images/gallery/1.png">
+            </div>
+            <div class="pic">
+                <img src="images/gallery/2.png">
+            </div>
+            <div class="pic">
+                <img src="images/gallery/3.png">
+            </div>
+            <div class="pic">
+                <img src="images/gallery/4.png">
+            </div>
+            <div class="pic">
+                <img src="images/gallery/5.png">
+            </div>
+            <div class="pic">
+                <img src="images/gallery/6.png">
+            </div>
+            <div class="pic">
+                <img src="images/gallery/7.png">
+            </div>
+            <div class="pic">
+                <img src="images/gallery/8.png">
+            </div>
+            <div class="pic">
+                <img src="images/gallery/9.png">
+            </div>
+            <div class="pic">
+                <img src="images/gallery/10.png">
+            </div>
+            <div class="pic">
+                <img src="images/gallery/11.png">
+            </div>
+            <div class="pic">
+                <img src="images/gallery/12.png">
+            </div>
+            <div class="pic">
+                <img src="images/gallery/13.png">
+            </div>
+        </div>
+    </center>
+
+<script>
+//Based on code sample from w3schools: https://www.w3schools.com/howto/howto_js_slideshow_gallery.asp
+let currentSlide = 0;
+let gallery = document.getElementsByClassName("pic");
+let backbtn = document.getElementById('last');
+let nextbtn = document.getElementById('next');
+
+backbtn.addEventListener("click", lastSlide);
+nextbtn.addEventListener("click",nextSlide);
+
+function nextSlide() {
+    currentSlide++;
+    if(currentSlide >= gallery.length) {
+        currentSlide = 0;
+    }
+    slideOn(currentSlide);
+}
+
+function lastSlide() {
+    currentSlide--;
+    if(currentSlide < 0) {
+        currentSlide = gallery.length - 1;
+    }
+    slideOn(currentSlide);
+}
+
+function slideOn(slide) {
+    for (let i = 0; i < gallery.length; i++)
+    {
+        gallery[i].style.display = "none";
+    }
+    gallery[slide].style.display="block";
+}
+slideOn(currentSlide);
+</script>
+</body>
+</html>
