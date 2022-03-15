@@ -71,9 +71,7 @@ function updateTable() {
         }
     }).catch(function (error) {
         console.log(error);
-    })
-});
-
+    });
 }
 
 function clearTable() {

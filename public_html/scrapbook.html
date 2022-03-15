@@ -3,9 +3,18 @@
 <head>
 	<meta charset="utf-8">
 	<title>Scrapbook</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
 	<style>
         .pic {
             display: none;
+        }
+        img {
+            width:auto;
+            max-width: 900vw;
+            height:auto;
+            max-height: 40vw;
+            border: 10px double black;
+            background-color: brown;
         }
 
     </style>
@@ -13,9 +22,12 @@
 <body>
     <center>
         <h1>Clan Gallery</h1>
+        <button class="last" id="last">&lt;</button>
+        <button class="next" id="next">&gt;</button>
+        <br>
+        <br>
         <div class="slideshow">
-            <button class="last" id="last">&lt;</button>
-            <button class="next" id="next">&gt;</button>
+            
             <div class="pic">
                 <img src="images/gallery/1.png">
             </div>

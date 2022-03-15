@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 const express = require("express");
 const app = express();
 
-const port = 3000;
+const port = process.env.port || 3000;
 const hostname = "localhost";
 
 // number of rounds the bcrypt algorithm will use to generate the salt
@@ -12,11 +12,17 @@ const hostname = "localhost";
 // https://github.com/kelektiv/node.bcrypt.js#a-note-on-rounds
 const saltRounds = 10;
 
-const env = require("../env.json");
 const Pool = pg.Pool;
-const pool = new Pool(env);
+const pool = new Pool({
+    host     : process.env.RDS_HOSTNAME,
+    user     : process.env.RDS_USERNAME,
+    password : process.env.RDS_PASSWORD,
+    port     : process.env.RDS_PORT, 
+    database : process.env.RDS_DB_NAME
+});
+
 pool.connect().then(function () {
-    console.log(`Connected to database ${env.database}`);
+    console.log(`Connected to database`);
 });
 
 app.use(express.static("public_html"));
@@ -139,6 +145,7 @@ app.post("/newListing", function(req, res){
 
 app.get("/getListings", function(req, res){
     pool.query("SELECT * FROM market")
+    // pool.query("CREATE TABLE market(item VARCHAR(50),quantity INT,price VARCHAR(50),name VARCHAR(50))")
     .then(function(response){
         return res.status(200).json({rows: response.rows});
     })
@@ -163,6 +170,6 @@ app.post("/vulnerable", function (req, res) {
 });
 */
 
-app.listen(port, hostname, () => {
+app.listen(port, () => {
     console.log(`Listening at: http://${hostname}:${port}`);
 });
