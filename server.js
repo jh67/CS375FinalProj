@@ -6,8 +6,6 @@ const app = express();
 const port = process.env.port || 3000;
 const hostname = "localhost";
 
-
-const env = require("../env.json");
 const Pool = pg.Pool;
 const pool = new Pool({
     host     : process.env.RDS_HOSTNAME,
