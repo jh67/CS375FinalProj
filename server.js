@@ -6,16 +6,8 @@ const app = express();
 const port = process.env.port || 3000;
 const hostname = "localhost";
 
-<<<<<<< HEAD
-const env = require("../env.json");
-=======
-// number of rounds the bcrypt algorithm will use to generate the salt
-// the more rounds, the longer it takes
-// so the salt will be more secure
-// https://github.com/kelektiv/node.bcrypt.js#a-note-on-rounds
-const saltRounds = 10;
 
->>>>>>> main
+const env = require("../env.json");
 const Pool = pg.Pool;
 const pool = new Pool({
     host     : process.env.RDS_HOSTNAME,

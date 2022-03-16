@@ -2,7 +2,7 @@ body {
 	margin: 2rem;
 	background-image:url("images/bg.jpg");
 	background-repeat: no-repeat;
-	background-size: cover;
+	background-size: auto;
 }
 
 table {
@@ -16,8 +16,17 @@ th, td {
 
 .ribbon {
 	border-radius: 10px;
-	width: 200px;
-	height: 100px;
+	max-width: 200px;
+	max-height: 100px;
+}
+
+.float {
+	background-color: rgb(231, 210, 156);
+	padding: 10px;
+	margin: 30px;
+	max-width: 300px;
+	max-height: 350px;
+	border-radius: 10px;
 }
 
 .form {
